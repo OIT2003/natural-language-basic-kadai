@@ -28,7 +28,14 @@ stop_text = stop_soup.text
 stoptext_list = stop_text.split("\r\n")
 stoptext_list = [word for word in stoptext_list if word]
 
-mecab_tagger = MeCab.Tagger()
+mecab_tagger = MeCab.Tagger("-Owakati")
 main_text = mecab_tagger.parse(main_text)
 
-print(main_text)
+main_text_list = main_text.split(" ")
+result_text_list = list()
+
+for split_text in main_text_list:
+    if split_text not in stoptext_list:
+        result_text_list.append(split_text)
+
+print(result_text_list)
